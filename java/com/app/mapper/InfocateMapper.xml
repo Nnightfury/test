@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.mapper.InfocateDAO">
+    <select id="getInfocateById" resultType="Infocate">
+        select
+        * from Infocate where `id`=#{id}
+    </select>
+    <delete id="delete">
+		delete from Infocate where id=#{id}
+	</delete>
+    <select id="getInfocateCount" resultType="int">
+        select count(id) from Infocate
+    </select>
+    <select id="getAllInfocate" resultType="Infocate">
+        select * from Infocate order by id desc
+    </select>
+    <insert id="insert" parameterType="Infocate">
+        insert into
+        Infocate(title,created,showtype,attach) 
+        values(#{title},#{created},#{showtype},#{attach});
+    </insert>
+
+    <update id="update" parameterType="Infocate">
+		update Infocate set showtype=#{showtype},attach=#{attach},title=#{title},created=#{created} where id=#{id}
+	</update>
+</mapper>

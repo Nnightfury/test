@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.mapper.CatesDAO">
+    <select id="getCatesById" resultType="com.app.entity.Cates">
+        select
+        * from Brands where `id`=#{id}
+    </select>
+    <delete id="delete">
+		delete from Brands where id=#{id}
+	</delete>
+    <select id="getCatesCount" resultType="int">
+        select count(id) from Brands
+    </select>
+    <select id="getAllCates" resultType="com.app.entity.Cates">
+        select * from Brands
+    </select>
+    <select id="getByPid" resultType="com.app.entity.Cates">
+        select * from Brands where pid=#{pid}
+    </select>
+
+    <select id="getRange" resultType="com.app.entity.Cates">
+        select * from Brands where minval&lt;#{val} AND maxval&gt;#{val}
+    </select>
+    <insert id="insert" parameterType="com.app.entity.Cates">
+        insert into
+        Brands(title,thumb,description,created,updated,minval,maxval,pid)
+        values(#{title},#{thumb},#{description},#{created},#{updated},#{minval},#{maxval},#{pid});
+    </insert>
+
+    <update id="update" parameterType="com.app.entity.Cates">
+		update Brands set title=#{title},thumb=#{thumb},description=#{description},created=#{created},updated=#{updated},minval=#{minval},maxval=#{maxval},pid=#{pid} where id=#{id}
+	</update>
+</mapper>

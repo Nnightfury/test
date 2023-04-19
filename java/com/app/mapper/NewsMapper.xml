@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.app.mapper.NewsDAO">
+    <select id="getNewsById" resultType="News">
+        select
+        * from News where `id`=#{id}
+    </select>
+    <delete id="delete">
+		delete from News where id=#{id}
+	</delete>
+    <select id="getNewsCount" resultType="int">
+        select count(id) from News order by id desc
+    </select>
+    <select id="getNewsLike" resultType="News">
+        select * from News where title LIKE #{title}
+    </select>
+
+    <select id="getAllNews" resultType="News">
+        select * from News order by id desc
+    </select>
+    <select id="getNewsRand2" resultType="News">
+        select * from News  order by rand() desc
+    </select>
+    <select id="getNewsRand" resultType="News">
+        select * from News where uid=#{uid} order by rand() desc
+    </select>
+
+    <select id="getNewsByCateId" resultType="News">
+        select * from News where uid=#{uid} order by id desc
+    </select>
+
+    <insert id="insert" parameterType="News">
+        insert into
+        News(uid,title,thumb,description,bodytext,created,click,support,tags) 
+        values(#{uid},#{title},#{thumb},#{description},#{bodytext},#{created},#{click},#{support},#{tags});
+    </insert>
+
+    <update id="update" parameterType="News">
+		update News set uid=#{uid},title=#{title},thumb=#{thumb},description=#{description},bodytext=#{bodytext},created=#{created},click=#{click},support=#{support},tags=#{tags} where id=#{id}
+	</update>
+</mapper>
